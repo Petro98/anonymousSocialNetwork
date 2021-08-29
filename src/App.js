@@ -1,25 +1,16 @@
-import logo from './logo.svg';
+import React from 'react';
+import Header from './components/Header/Header';
+import Block from './components/Block/Block';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+function App(props) {
+	return (
+			<div className='app-wrapper'>
+				<Header className='header' />
+				<Block className='block' state={props.state} addPost={props.addPost} updateNewPostText={props.updateNewPostText} updateNewMessage={props.updateNewMessage}/>
+			</div>
+	);
 }
 
 export default App;

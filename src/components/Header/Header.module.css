@@ -1,0 +1,30 @@
+.header {
+	background-color: rgb(7, 7, 7);
+	display: flex;
+	justify-self: start;
+	height: 8vh;
+}
+
+.logoImg{
+margin-right: 40px;
+}
+
+.block{
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	color:rgb(255, 255, 255);
+	border-bottom: 2px solid rgb(255, 255, 255);
+	border-bottom-left-radius: 25px;
+
+}
+.block p{
+	text-align: center;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-left: 20px;
+	font-size: 25px;
+	padding: 6px 10px;
+	border-bottom: 2px solid #48bfe3;
+	border-bottom-left-radius: 25px;
+}

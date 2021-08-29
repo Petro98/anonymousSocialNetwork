@@ -1,0 +1,57 @@
+.container {
+	width: 100%;
+	margin: 0 auto;
+	padding: 10px 20px 15px 20px;
+	background-color: #212529;
+	border-radius: 10px;
+	min-height: 53vh;
+}
+
+.block {
+	width: 100%;
+	margin-left: 40px;
+}
+
+.addPost {
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+}
+.addPost textarea {
+	height: 60px;
+	border-radius: 5px;
+	padding: 4px 10px;
+}
+
+.addPost button {
+	margin-top: 6px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 85px;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: #212529;
+	color:#48bfe3;
+	box-shadow: 0 0 5px rgb(255, 255, 255);
+}
+.text{
+	color: rgb(255, 255, 255);
+	display: block;
+	width: 100%;
+	text-align: center;
+	font-size: 28px;
+	font-weight: 800;
+	margin-bottom: 10px;
+}
+
+@media screen and (max-width: 800px) {
+	.container {
+		padding-right: 36px !important;
+	}
+	.addPost {
+		padding-left: 16px !important;
+	}
+ }
+

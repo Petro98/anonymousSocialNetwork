@@ -1,0 +1,57 @@
+.block {
+	margin-top: 10px;
+	width: 100%;
+	min-height:88vh ;
+}
+.content_dialogs {
+	margin: 0 auto;
+	display: flex;
+	width: 95%;
+	justify-content: space-between;
+	min-height: 70vh;
+}
+
+.dialogs_item {
+	width: 24%;
+	min-width: 180px;
+}
+
+.messeges {
+	display:flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 75%;
+	position: relative;
+}
+.item {
+	padding: 20px 20px;
+	border: 1px solid black;
+	background-color: #212529;
+	border-radius: 10px;
+}
+
+
+.addMesseger {
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+}
+.addMesseger textarea {
+	height: 60px;
+	border-radius: 5px;
+	padding: 4px 10px;
+}
+
+.addMesseger button {
+	margin-top: 6px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 85px;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: #212529;
+	color:#48bfe3;
+	box-shadow: 0 0 5px rgb(255, 255, 255);
+}

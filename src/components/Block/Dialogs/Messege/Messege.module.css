@@ -1,0 +1,10 @@
+.messege{
+	display:table;
+	margin: 15px 0;
+	padding: 6px 10px ;
+	border: 1px solid black;
+	border-radius: 8px;
+	background-color: #495057;
+	font-size: 16px;
+	color: #fff;
+}

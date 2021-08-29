@@ -1,0 +1,66 @@
+.block {
+	margin-top: 60px;
+	
+}
+
+.photos {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.text {
+	margin-bottom: 10px;
+	font-size: 20px;
+	text-align: center;
+	padding: 5px;
+	border: 1px solid rgb(0, 0, 0);
+	border-radius: 5px;
+	background-color: #000814;
+	width: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	color: #48bfe3;
+}
+
+.photo {
+	position: relative;
+	width: 45px;
+	height: 45px;
+	margin: 7px 3px;
+	background-color: #000000;
+	border-radius: 50%;
+	border: 1px solid #fff;
+}
+
+.name {
+	position: absolute;
+	left: 50%;
+	top: 44px;
+	transform: translate(-50%, 0);
+	opacity: 0;
+	transition: 0.2s;
+	color: rgb(0, 0, 0);
+	font-weight: 600;
+	font-size: 11px;
+}
+
+.photo:hover > .name {
+	opacity: 1;
+	transition: 0.2s;
+}
+.photo:hover{
+	box-shadow: 0 0 5px #000000;
+	transform: scale(1.1);
+	border-radius: 15px;
+}
+
+.photo img{
+	margin: auto auto;
+	width: 99%;
+	border-radius: 50%;
+}
+
+.photo img:hover{
+	border-radius: 15px;
+}
