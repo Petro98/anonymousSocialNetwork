@@ -8,7 +8,7 @@ function App(props) {
 	return (
 			<div className='app-wrapper'>
 				<Header className='header' />
-				<Block className='block' state={props.state} addPost={props.addPost} updateNewPostText={props.updateNewPostText} updateNewMessage={props.updateNewMessage}/>
+				<Block className='block' state={props.state}  dispatch={props.dispatch}/>
 			</div>
 	);
 }

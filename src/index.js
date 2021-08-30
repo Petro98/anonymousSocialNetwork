@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-// import {addPost,updateNewPostText ,updateNewMessage ,subscribe} from './components/Redax/state';
 
 
 
@@ -13,7 +12,7 @@ import { BrowserRouter } from 'react-router-dom';
 let renderEntireTree = (state) => {
 	ReactDOM.render(
 	<BrowserRouter>
-		<App state={state} addPost={store.addPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)} updateNewMessage={store.updateNewMessage.bind(store)}/>
+		<App state={state}  dispatch={store.dispatch.bind(store)}/>
 	</BrowserRouter>, document.getElementById('root')
 )
 }

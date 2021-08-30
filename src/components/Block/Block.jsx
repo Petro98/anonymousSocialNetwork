@@ -15,7 +15,7 @@ const Block = props => {
 						exact
 						className={s.dialogs}
 						path='/dialogs'
-						render={() => <Dialogs state={props.state.messagesPage} updateNewMessage={props.updateNewMessage} />}
+						render={() => <Dialogs state={props.state.messagesPage} dispatch={props.dispatch} />}
 					/>
 					<Route
 						exact
@@ -24,8 +24,7 @@ const Block = props => {
 						render={() => (
 							<Content
 								profilePage={props.state.profilePage}
-								addPost={props.addPost}
-								updateNewPostText={props.updateNewPostText}
+								dispatch={props.dispatch}
 							/>
 						)}
 					/>

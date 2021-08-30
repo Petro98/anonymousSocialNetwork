@@ -80,6 +80,12 @@ let store = {
 	_callSubscribe() {
 		alert('fefe');
 	},
+	subscribe(observer) {
+			this._callSubscribe = observer;
+		},
+
+
+
 	addPost() {
 		let newPost = {
 			messege: this._state.profilePage.newPostText,
@@ -98,9 +104,26 @@ let store = {
 		this._state.messagesPage.messageText = newMessage;
 		this._callSubscribe(this._state);
 	},
-	subscribe(observer) {
-		this._callSubscribe = observer;
-	},
+	
+
+	dispatch(action){
+		if (action.type === 'ADD-POST') {
+			let newPost = {
+				messege: this._state.profilePage.newPostText,
+				id: '5',
+				likesCount: '20',
+				img: 'https://image.flaticon.com/icons/png/512/5484/5484480.png',
+			};
+			this._state.profilePage.posts.push(newPost);
+			this._callSubscribe(this._state);
+		}else if (action.type === 'UPDATE-NEW-POST-TEXT'){
+			this._state.profilePage.newPostText = action.newText;
+			this._callSubscribe(this._state);
+		}else if(action.type === 'UPDATE-NEW-MESSAGE'){
+			this._state.messagesPage.messageText = action.newMessage;
+			this._callSubscribe(this._state);
+		}
+	}
 };
 
 export default store;
