@@ -1,28 +1,26 @@
-import React from 'react';
+// import React from 'react';
 import c from './MyPosts.module.css';
 import Posts from './Post/Posts';
 
+let key = 9;
 const MyPosts = props => {
-	let newPostElement = React.createRef();
-	let addPosts = () => {
-		props.dispatch({ type :'ADD-POST'});
+	let onAddPosts = () => {
+		props.addPosts(key++)
 	};
-	let onPostChange = () => {
-		let text = newPostElement.current.value;
-		props.dispatch({ type :'UPDATE-NEW-POST-TEXT',newText : text});
+	let onPostChange = (e) => {
+		props.updateNewPostText(e.target.value)
 	};
 	return (
 		<div className={c.container}>
 			<div className={c.addPost}>
-			<div className={c.text}>New Post</div>
+				<div className={c.text}>New Post</div>
 
 				<textarea
 					onChange={onPostChange}
-					ref={newPostElement}
 					value={props.profilePage.newPostText}
 				></textarea>
 
-				<button onClick={addPosts}>Add Post</button>
+				<button onClick={onAddPosts}>Add Post</button>
 			</div>
 			<div className={c.block}>
 				{props.profilePage.posts.map(elem => (

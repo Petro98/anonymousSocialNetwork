@@ -9,6 +9,7 @@ const Header = () => {
 					className={classes.logoImg}
 					style={{ width: '60px' , height:'60px'}}
 					src='https://image.flaticon.com/icons/png/512/187/187892.png'
+					alt='img'
 				/>
 			</div>
 		</div>

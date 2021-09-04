@@ -18,7 +18,13 @@ const NavBar = () => {
 			</div>
 			<div className={classes.item}>News</div>
 			<div className={classes.item}>Music</div>
-			<Friends/>
+			<br />
+			<div className={classes.item}>
+				<NavLink activeClassName={classes.active} to='/users'>
+					Users
+				</NavLink>
+			</div>
+			<Friends />
 		</div>
 	);
 };
