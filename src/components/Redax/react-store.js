@@ -7,7 +7,6 @@ let reducers = combineReducers({
 	messagesPage: dialogsReducer,
 	usersPage: usersReducer
 	// sidebar: sidebarReducer,
-	
 });
 
 const store = createStore(

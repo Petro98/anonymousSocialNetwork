@@ -1,81 +1,51 @@
 import React from 'react';
+import 'antd/dist/antd.css';
 import classes from './Users.module.css';
+import userPhoto from '../../../img/question.png';
+import { Pagination } from 'antd';
+import Loading from '../../UI/Loading';
+import { NavLink } from 'react-router-dom';
+
 const Users = props => {
-	const styleText = {
+	let styleText = {
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'space-between',
 	};
-	if (props.users.length === 0) {
-		props.setUsers([
-		{
-			id: '1',
-			followed: false,
-			status: 'привіт в мене сьогодні чудовий день',
-			fullName: 'Іван',
-			location: { city: 'Івано-Франківськ', country: 'Україна' },
-			img: 'https://image.flaticon.com/icons/png/512/5489/5489130.png',
-		},
-		{
-			id: '2',
-			followed: false,
-			status: 'спорт сила ,алкоголь могила!!!',
-			fullName: 'Микола',
-			location: { city: 'Закарпання', country: 'Україна' },
-			img: 'https://image.flaticon.com/icons/png/512/5484/5484242.png',
-		},
-		{
-			id: '3',
-			followed: true,
-			status: 'живи!!! , а працюй у вільний час',
-			fullName: 'Йосип',
-			location: { city: 'Київ', country: 'Україна' },
-			img: 'https://image.flaticon.com/icons/png/512/5484/5484243.png',
-		},
-		{
-			id: '4',
-			followed: false,
-			status: 'наш день це як політ сліпого горобця!',
-			fullName: 'Юра',
-			location: { city: 'Львів', country: 'Україна' },
-			img: 'https://image.flaticon.com/icons/png/512/5484/5484536.png',
-		},
-		{
-			id: '5',
-			followed: true,
-			status: 'В мене великі цицьки',
-			fullName: 'Мирося',
-			location: { city: 'Київ', country: 'Україна' },
-			img: 'https://image.flaticon.com/icons/png/512/5484/5484243.png',
-		},
-		{
-			id: '6',
-			followed: false,
-			status: 'я люблю життя',
-			fullName: 'Галя',
-			location: { city: 'Харків', country: 'Україна' },
-			img: 'https://image.flaticon.com/icons/png/512/5484/5484536.png',
-		},
-	],)
+	let pageCount = Math.ceil(props.props.totalUserCount / props.props.pageSize);
+	let pages = [];
+	for (let i = 1; i <= pageCount; i++) {
+		pages.push(i);
 	}
-	
 	return (
 		<div className={classes.block}>
 			<h1 style={{ fontSize: '25px', textAlign: 'center' }}>Users</h1>
-			{props.users.map(u => (
-				<div className={classes.container}>
+
+			{props.props.users.map((u) => (
+				<div className={classes.container} key={u.id}>
 					<div style={styleText}>
-						<img
-							style={{ width: '40px', margin: '0 auto' }}
-							src={u.img}
-							alt='#'
-						/>
+						<NavLink
+							to={`/content/${u.id}`}
+							style={{
+								margin: '0 auto',
+							}}
+						>
+							<img
+								style={{
+									width: '50px',
+									margin: '0 auto',
+									borderRadius: '10px',
+								}}
+								src={u.photos.large ? u.photos.large : userPhoto}
+								alt='нема'
+							/>
+						</NavLink>
 						<div>
 							{u.followed ? (
 								<button
 									className={classes.buttonSab}
 									onClick={() => {
-										props.unFollow(u.id);
+										props.props.unFollow(u.id);
 									}}
 								>
 									{u.followed ? 'Follow' : 'Un follow'}
@@ -84,7 +54,7 @@ const Users = props => {
 								<button
 									className={classes.buttonSab}
 									onClick={() => {
-										props.follow(u.id);
+										props.props.follow(u.id);
 									}}
 								>
 									{u.followed ? 'Follow' : 'Un follow'}
@@ -94,30 +64,54 @@ const Users = props => {
 					</div>
 					<div className={classes.info}>
 						<div style={styleText}>
-							<h2 style={{ fontSize: '20px' }}>{u.fullName}</h2>
-							<h3>{u.status}</h3>
+							<h2 style={{ fontSize: '20px' }}>{u.name}</h2>
+							<h3>{u.status ? u.status : 'статуса немає'}</h3>
 						</div>
-						<div style={{ ...styleText, justifyContent: 'flex-end' }}>
-							<h3>{u.location.city}</h3>
-							<h3 style={{ marginTop: '5px' }}>{u.location.country}</h3>
+						<div style={styleText}>
+							<h3>
+								{
+									<img
+										src={
+											u.photos.small
+												? u.photos.small
+												: 'https://cdn-icons-png.flaticon.com/512/1040/1040262.png'
+										}
+										alt=''
+										width='30px'
+										style={{ borderRadius: '50%' }}
+									/>
+								}
+							</h3>
+							<h3>{'u.location.city'}</h3>
 						</div>
 					</div>
 				</div>
 			))}
-			<button
+			<Pagination
+				showQuickJumper
+				current={props.props.currentPage}
+				onChange={p => props.onChangePage(p)}
+				total={pageCount + '0'}
+				style={{ margin: '0 auto', marginTop: '25px' }}
+			/>
+			<div style={{ position: 'absolute', margin: '25px' }}>
+				{props.props.isFetching ? <Loading /> : null}
+			</div>
+			{/* <button
 				style={{
 					padding: '10px 25px',
 					backgroundColor: '#212529',
 					color: '#48bfe3',
 					borderRadius: '5px',
 					position: 'absolute',
-					bottom: '5%',
+					bottom: '2%',
 					left: '50%',
 					transform: 'translate(-50%, 0)',
 				}}
+				onClick={props.getUsers.bind(this)}
 			>
 				Show more
-			</button>
+			</button> */}
 		</div>
 	);
 };
