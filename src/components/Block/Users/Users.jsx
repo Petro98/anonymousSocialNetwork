@@ -20,12 +20,11 @@ const Users = props => {
 	return (
 		<div className={classes.block}>
 			<h1 style={{ fontSize: '25px', textAlign: 'center' }}>Users</h1>
-
-			{props.props.users.map((u) => (
+			{props.props.users.map(u => (
 				<div className={classes.container} key={u.id}>
 					<div style={styleText}>
 						<NavLink
-							to={`/content/${u.id}`}
+							to={`/profile/${u.id}`}
 							style={{
 								margin: '0 auto',
 							}}
@@ -43,9 +42,15 @@ const Users = props => {
 						<div>
 							{u.followed ? (
 								<button
+									style={
+										props.followingInProgress.some(id => id === u.id)
+											? { color: 'red' }
+											: { color: '#48bfe3' }
+									}
 									className={classes.buttonSab}
+									disabled={props.followingInProgress.some(id => id === u.id)}
 									onClick={() => {
-										props.props.unFollow(u.id);
+										props.unFollow(u, u.id);
 									}}
 								>
 									{u.followed ? 'Follow' : 'Un follow'}
@@ -53,8 +58,14 @@ const Users = props => {
 							) : (
 								<button
 									className={classes.buttonSab}
+									style={
+										props.followingInProgress.some(id => id === u.id)
+											? { color: 'red' }
+											: { color: '#fff' }
+									}
+									disabled={props.followingInProgress.some(id => id === u.id)}
 									onClick={() => {
-										props.props.follow(u.id);
+										props.follow(u, u.id);
 									}}
 								>
 									{u.followed ? 'Follow' : 'Un follow'}
@@ -97,21 +108,6 @@ const Users = props => {
 			<div style={{ position: 'absolute', margin: '25px' }}>
 				{props.props.isFetching ? <Loading /> : null}
 			</div>
-			{/* <button
-				style={{
-					padding: '10px 25px',
-					backgroundColor: '#212529',
-					color: '#48bfe3',
-					borderRadius: '5px',
-					position: 'absolute',
-					bottom: '2%',
-					left: '50%',
-					transform: 'translate(-50%, 0)',
-				}}
-				onClick={props.getUsers.bind(this)}
-			>
-				Show more
-			</button> */}
 		</div>
 	);
 };

@@ -1,10 +1,20 @@
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+import { profileAPI } from '../../../API/api';
+
 const ADD_POST = 'ADD-POST';
-export const updateNewPostText = text => ({
-	type: UPDATE_NEW_POST_TEXT,
-	newText: text,
+const SET_USERS_PROFILE = 'SET_USERS_PROFILE';
+const SET_STATUS = 'SET_STATUS';
+
+export const addPost = (newPostText ,id) => ({
+	type: ADD_POST,
+	newPostText,
+	id,
 });
-export const addPost = id => ({ type: ADD_POST, id: id });
+const setUsersProfile = profile => ({
+	type: SET_USERS_PROFILE,
+	profile,
+});
+
+export const setStatus = status => ({ type: SET_STATUS, status });
 
 let initialState = {
 	posts: [
@@ -26,15 +36,16 @@ let initialState = {
 			likesCount: '14',
 			img: 'https://image.flaticon.com/icons/png/512/5484/5484243.png',
 		},
-		{
-			messege:
-				'Anonymous is a decentralized international activist/hacktivist collective/movement widely known for its various cyber attacks against several governments, government institutions and government agencies, corporations, and the Church of Scientology.',
-			id: '4',
-			likesCount: '100',
-			img: 'https://image.flaticon.com/icons/png/512/5484/5484536.png',
-		},
+		// {
+		// 	messege:
+		// 		'Anonymous is a decentralized international activist/hacktivist collective/movement widely known for its various cyber attacks against several governments, government institutions and government agencies, corporations, and the Church of Scientology.',
+		// 	id: '4',
+		// 	likesCount: '100',
+		// 	img: 'https://image.flaticon.com/icons/png/512/5484/5484536.png',
+		// },
 	],
-	newPostText: 'it-kamasutra',
+	profile: null,
+	status: '',
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -42,14 +53,45 @@ const profileReducer = (state = initialState, action) => {
 		case ADD_POST:
 			return {
 				...state,
-				posts: [{messege: state.newPostText, id: action.id,likesCount: '20', img: 'https://image.flaticon.com/icons/png/512/5484/5484480.png'} ,...state.posts,],
-				newPostText: '',
+				posts: [
+					{
+						messege: action.newPostText,
+						id: action.id,
+						likesCount: '20',
+						img: 'https://image.flaticon.com/icons/png/512/5484/5484480.png',
+					},
+					...state.posts,
+				],
 			};
-		case UPDATE_NEW_POST_TEXT:
-			return { ...state, newPostText: action.newText };
+		case SET_USERS_PROFILE:
+			return { ...state, profile: action.profile };
+		case SET_STATUS:
+			return { ...state, status: action.status };
 		default:
 			return state;
 	}
+};
+
+export const getProfileAPI = userId => {
+	return dispatch => {
+		profileAPI.getUserProfile(userId).then(profile => {
+			dispatch(setUsersProfile(profile?.data));
+		});
+	};
+};
+export const getStatus = userId => {
+	return dispatch => {
+		profileAPI.getStatus(userId).then(status => {
+			dispatch(setStatus(status?.data));
+		});
+	};
+};
+export const updateStatus = status => {
+	return dispatch => {
+		profileAPI.updateStatus(status).then(response => {
+			if (response.data.resultCode === 0) dispatch(setStatus(status));
+		});
+	};
 };
 
 export default profileReducer;

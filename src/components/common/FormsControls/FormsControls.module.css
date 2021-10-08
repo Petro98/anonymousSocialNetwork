@@ -1,0 +1,17 @@
+.content {
+	position: relative;
+	width: 100%;
+}
+
+.styleError {
+	color: red;
+	border: 2px solid red;
+}
+.spanNull{
+	opacity: 0
+}
+.span {
+	color: red;
+	position: relative;
+	bottom: 10px;
+}

@@ -1,9 +1,11 @@
-import React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
-import { updateNewMessage, sendMessage } from '../../Redax/reducer/dialogs-reducer';
+import {
+	sendMessage,
+} from '../../Redax/reducer/dialogs-reducer';
 import Dialogs from './Dialogs';
-
 
 let mapStateToProps = state => {
 	return {
@@ -12,18 +14,13 @@ let mapStateToProps = state => {
 };
 let mapDispatchToProps = dispatch => {
 	return {
-		sendMessage: _ => {
-			dispatch(sendMessage());
-		},
-		updateNewMessage: e => {
-			dispatch(updateNewMessage(e));
+		sendMessage: newMessage => {
+			dispatch(sendMessage(newMessage));
 		},
 	};
 };
 
-const SuperDialogsContainer = connect(
-	mapStateToProps,
-	mapDispatchToProps
+export default compose(
+	connect(mapStateToProps, mapDispatchToProps),
+	withAuthRedirect
 )(Dialogs);
-
-export default SuperDialogsContainer;

@@ -1,15 +1,16 @@
 import React from 'react';
 import NavBar from './NavBar/NavBar';
 import s from './Block.module.css';
-import Content from './Contentt/Content';
 import { Route } from 'react-router-dom';
 import DialogsContainer from './Dialogs/DialogsContainer';
 import UsersContainer from './Users/UsersContainer';
+import ProfileContainer from './Contentt/ProfileContainer';
+import LoginContainer from '../LoginContainer/LoginContainer';
 
 const Block = _ => {
 	return (
 		<>
-			<div className={s.block}>
+			<div className={s.block} >
 				<NavBar />
 				<div className={s.content_wraper}>
 					<Route
@@ -21,14 +22,20 @@ const Block = _ => {
 					<Route
 						exact
 						className={s.Content}
-						path='/content'
-						render={() => <Content />}
+						path='/profile/:userId?'
+						render={() => <ProfileContainer/>}
 					/>
 					<Route
 						exact
 						className={s.Content}
 						path='/users'
 						render={() => <UsersContainer />}
+					/>
+					<Route
+						exact
+						className={s.Content}
+						path='/login'
+						render={() => <LoginContainer />}
 					/>
 				</div>
 			</div>

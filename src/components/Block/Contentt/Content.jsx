@@ -4,9 +4,10 @@ import MyPostsContainer from './MyPosys/MyPostsContainer';
 import ProfaileInfo from './PrefaileInfo/ProfaileInfo';
 
 const Content = (props) => {
+
 	return (
 		<div className={classes.content_text}>
-			<ProfaileInfo/>
+			<ProfaileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
 			<MyPostsContainer/>
 		</div>
 	);

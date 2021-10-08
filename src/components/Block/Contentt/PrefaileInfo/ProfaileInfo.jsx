@@ -1,13 +1,28 @@
 // import React from 'react'
-import s from './ProfaileInfo.module.css'
+import Loading from '../../../UI/Loading';
+import s from './ProfaileInfo.module.css';
+import ProfileStatus from './ProfileStatus';
 
-const ProfaileInfo = (props) => {
-	return ( 
+const ProfaileInfo = props => {
+	const { status, updateStatus } = props;
+	if (!props.profile) {
+		return <Loading />;
+	}
+	return (
 		<div className={s.block}>
-			<img className={s.img} src='https://livestartpage.com/gallery/themes/68fc5e7beb19f06b346dfb53c5bd292c/poster.png' />
-			<div className ={s.info}>Anonymous is a decentralized international activist/hacktivist collective/movement widely known for its various cyber attacks against several governments, government institutions and government agencies, corporations, and the Church of Scientology. </div>
+			<img
+				className={s.img}
+				src={
+					props.profile.photos.large ||
+					'https://livestartpage.com/gallery/themes/68fc5e7beb19f06b346dfb53c5bd292c/poster.png'
+				}
+				alt=''
+			/>
+			<div className={s.info}>
+				<ProfileStatus status={status} updateStatus={updateStatus}  />
+			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default ProfaileInfo
+export default ProfaileInfo;

@@ -1,8 +1,8 @@
 .app-wrapper {
 	margin: 0 auto;
-	padding: 0 10%;
-	background-color: #000000;
+	/* background-color: #000000; */
 }
+
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500&display=swap');
 body{
 	font-family: 'Hind Siliguri', sans-serif;
